@@ -1,0 +1,22 @@
+//Sample Input File.
+//Format: First line: Number of Edges, Number of Vertices
+//All other lines: Starting edge, Adjacent Edge, Distance of connecting Vertex.
+
+4 6
+1 2 2
+1 4 1
+2 3 2
+3 2 2
+3 4 3
+4 1 4
+
+//End Input
+
+//Sample Output
+//With the test code I used, you gave the function a start point and an end point, and it gives you a path.
+//Example Function input for "1 to 3" given below
+
+1 2 2
+2 3 2
+
+Total distance: 4

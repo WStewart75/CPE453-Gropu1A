@@ -1,0 +1,56 @@
+#include <climits>
+#include <list>
+#include <vector>
+#include <queue>
+
+
+using namespace std;
+
+struct node {
+    int vertex;
+    int weight;
+    node(int v, int w) : vertex(v), weight(w) { };
+    node() { }
+};
+
+class Compare {
+    public:
+        bool const operator()(node &nodeX, node &nodeY) {
+            return (nodeX.weight > nodeY.weight) ;
+        }
+};
+
+vector< list<node> > adj;
+vector<int> weights;
+priority_queue<node, vector<node>, CompareGreater> Q;
+
+int nrVertices, nrEdges;
+void Dijkstra(node);
+
+int main(int argc, char *argv[]) {
+
+    Dijkstra(node(1, 0));
+
+    return 0;
+}
+
+void Dijkstra(node startnode) {
+    node currentnode;
+
+    weights[startnode.vertex] = 0;
+    Q.push(startnode);
+
+    while (!Q.empty()) {
+        currentnode = Q.top();
+        Q.pop();
+
+        if (currentnode.weight <= weights[currentnode.vertex]) {
+            for (list<node>::iterator it = adj[currentnode.vertex].begin(); it != adj[currentnode.vertex].end(); ++it) {
+                if (weights[it->vertex] > weights[currentnode.vertex] + it->weight) {
+                    weights[it->vertex] = weights[currentnode.vertex] + it->weight;
+                    Q.push(node((it->vertex), weights[it->vertex]));
+                }
+            }
+        }
+    }
+}
